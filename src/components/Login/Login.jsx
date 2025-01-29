@@ -2,7 +2,7 @@ import { FaUser, FaLock } from "react-icons/fa"
 
 import { useState } from "react"
 
-import "./Login.css"
+import "./Login.module.css"
 const Login = () => {
 
   const [username, setUsername] = useState("")
