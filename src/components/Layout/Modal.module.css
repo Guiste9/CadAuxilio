@@ -57,12 +57,3 @@
     cursor: pointer;
 }
 
-.cancelBtn {
-    background-color: red;
-    color: white;
-}
-
-.proceedBtn {
-    background-color: green;
-    color: white;
-}

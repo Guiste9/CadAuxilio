@@ -1,12 +1,25 @@
 import { FaUser, FaLock } from "react-icons/fa"
 
 import { useState } from "react"
-
+import {useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth'
 import "./Login.module.css"
+import { auth } from "../../services/FireBaseConfig"
+
 const Login = () => {
 
-  const [username, setUsername] = useState("")
-  const [password, setpassword] = useState("")
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [
+    createUserWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useCreateUserWithEmailAndPassword(auth);
+
+  function handleSignIn(){
+    createUserWithEmailAndPassword(email,password)
+  }
 
   const handlesubmit = (event) => {
     event.preventDefault()
@@ -18,12 +31,14 @@ const Login = () => {
         <form onSubmit={handlesubmit}>
             <h1>acesse o sistema</h1>
             <div className=" input-field">
-                <input type="email"placeholder='E-mail'
-                required onChange={e => setUsername(e.target.value)} />
+                <input 
+                type="text"
+                placeholder='E-mail'
+                required onChange={e => setEmail(e.target.value)} />
                 <FaUser className="icon"/>
             </div>
             <div className="input-field">
-                <input type="password" placeholder='Senha' onChange={e => setpassword(e.target.value)}/>
+                <input type="password" placeholder='Senha' onChange={e => P(e.target.value)}/>
                 <FaLock className="icon"/>
             </div>
 
@@ -34,7 +49,7 @@ const Login = () => {
             </label>
             <a href="#">Esqueceu a senha?</a>
           </div>
-            <button>Entrar</button>
+            <button onClick={handleSignIn}>Entrar</button>
 
           <div className="signup-link">
             <p>
