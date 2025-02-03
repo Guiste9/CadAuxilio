@@ -1,64 +1,42 @@
-import { FaUser, FaLock } from "react-icons/fa"
+import { useState } from "react";
+import React from "react";
+import { auth } from "../../services/FireBaseConfig";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import styles from "../Layout/Modal.module.css";
 
-import { useState } from "react"
-import {useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth'
-import "./Login.module.css"
-import { auth } from "../../services/FireBaseConfig"
+function Login({ switchToRegister, closeModal }) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-const Login = () => {
+    const [signInWithEmailAndPassword, user, loading, error] =
+        useSignInWithEmailAndPassword(auth);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+    async function handleSignIn() {
+        const response = await signInWithEmailAndPassword(email, password);
+        if (response?.user) {
+            closeModal(); 
+        }
+    }
 
-  const [
-    createUserWithEmailAndPassword,
-    user,
-    loading,
-    error,
-  ] = useCreateUserWithEmailAndPassword(auth);
-
-  function handleSignIn(){
-    createUserWithEmailAndPassword(email,password)
-  }
-
-  const handlesubmit = (event) => {
-    event.preventDefault()
-
-    alert("enviando os dados:" + username + "-" + password)
-  }
-  return (
-    <div className="container">
-        <form onSubmit={handlesubmit}>
-            <h1>acesse o sistema</h1>
-            <div className=" input-field">
-                <input 
-                type="text"
-                placeholder='E-mail'
-                required onChange={e => setEmail(e.target.value)} />
-                <FaUser className="icon"/>
-            </div>
-            <div className="input-field">
-                <input type="password" placeholder='Senha' onChange={e => P(e.target.value)}/>
-                <FaLock className="icon"/>
-            </div>
-
-          <div className="recall-forget">
-            <label>
-              <input type="checkbox" />
-              lembre de mim
-            </label>
-            <a href="#">Esqueceu a senha?</a>
-          </div>
+    return (
+      <div className={styles.modalBackground}>
+      <div className={styles.modalContainer}>
+        <div className={styles.titleCloseBtn}>
+                              <button onClick={() => closeModal()}>×</button>
+                            </div>
+        <div className={styles.centralized}>
+            <input type="text" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
             <button onClick={handleSignIn}>Entrar</button>
 
-          <div className="signup-link">
-            <p>
-              Não tem um conta? <a href="#">Registar</a>
-            </p>
-          </div>
-        </form>
-    </div>
-  )
+            {loading && <p>Carregando...</p>}
+            {error && <p style={{ color: "red" }}>{error.message}</p>}
+
+            <p>Não tem uma conta? <button onClick={switchToRegister} className={styles.linkButton}>Registrar-se</button></p>
+        </div>
+        </div>
+        </div>
+    );
 }
 
-export default Login
+export default Login;

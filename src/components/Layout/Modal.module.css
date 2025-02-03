@@ -12,9 +12,9 @@
 }
 
 .modalContainer {
-    width: 400px;
-    height: 250px;
-    background-color: white;
+    width: 600px;
+    height: 375px;
+    background-color: #FFF4ED;
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
@@ -25,7 +25,7 @@
 
 .titleCloseBtn {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     width: 100%;
 }
 
@@ -56,4 +56,14 @@
     border-radius: 8px;
     cursor: pointer;
 }
-
+.centralized{
+        
+    margin-top: 60px;
+  
+    display: flex;
+        flex-direction: column;
+        /* Empilha os botões verticalmente */
+        gap: 0.8em;
+        /* Adiciona espaço entre os botões */
+        align-items: center;
+}

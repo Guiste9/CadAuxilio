@@ -6,6 +6,8 @@ import Frequências from "./components/Pages/Frequências";
 import Container from './components/Layout/Container';
 import Navbar from './components/Layout/Navbar'
 import Footer from './components/Layout/Footer'
+import Login from './components/Login/Login';
+import Register from './components/Login/Register'
 function App() {
   return (
     <Router>

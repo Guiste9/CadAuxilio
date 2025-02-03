@@ -1,8 +1,8 @@
-import Button from "./Button";
+import Button from "./LinkButton";
 import React from "react";
 import styles from "./Modal.module.css";
 
-function Modal({ closeModal }) {
+function Modal() {
   return (
     <div className={styles.modalBackground}>
       <div className={styles.modalContainer}>
