@@ -14,17 +14,13 @@ function Home() {
             <img src={coracao} alt="CadAuxilio" className={styles.img} />
 
             <div className={styles.button_container}>
-                <button onClick={() => setActiveModal("register")}>Registrar-se</button>
-                <button onClick={() => setActiveModal("login")}>Login</button>
+                <button className={styles.btn} onClick={() => setActiveModal("register")}>Registrar-se</button>
+                <button className={styles.btn} onClick={() => setActiveModal("login")}>Login</button>
             </div>
 
             {activeModal && (
                 <div className={styles.modalBackground}>
                     <div className={styles.modalContainer}>
-                        <div className={styles.titleCloseBtn}>
-                            <button onClick={() => setActiveModal(null)}>×</button>
-                        </div>
-
                         {activeModal === "register" ? (
                             <Register switchToLogin={() => setActiveModal("login")} closeModal={() => setActiveModal(null)} />
                         ) : (

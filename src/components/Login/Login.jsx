@@ -25,14 +25,30 @@ function Login({ switchToRegister, closeModal }) {
                               <button onClick={() => closeModal()}>×</button>
                             </div>
         <div className={styles.centralized}>
-            <input type="text" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={handleSignIn}>Entrar</button>
+
+            <h2>Login</h2>
+
+            <div>
+            <label >E-mail</label>
+            <input 
+            type="text"  
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} 
+            />
+            </div>
+
+            <div>
+                <label >Senha</label>
+            <input type="password"
+              value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
+
+            <button className={styles.confirm} onClick={handleSignIn}>Entrar</button>
 
             {loading && <p>Carregando...</p>}
-            {error && <p style={{ color: "red" }}>{error.message}</p>}
+            {error && <p style={{ color: "red" }}>Credenciais incorretas</p>}
 
-            <p>Não tem uma conta? <button onClick={switchToRegister} className={styles.linkButton}>Registrar-se</button></p>
+            <p>Não tem uma conta? <button className={styles.hidden} onClick={switchToRegister}>Registrar-se</button></p>
         </div>
         </div>
         </div>

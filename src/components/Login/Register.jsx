@@ -2,7 +2,6 @@ import { useState } from "react"
 import {useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth'
 import styles from "../Layout/Modal.module.css";
 import { auth } from "../../services/FireBaseConfig"
-import { Link } from "react-router-dom";
 
 function Register({ switchToLogin, closeModal }) {
   const [email, setEmail] = useState("");
@@ -24,8 +23,10 @@ function Register({ switchToLogin, closeModal }) {
                       <button onClick={() => closeModal()}>×</button>
                     </div>
 
+     
     <div className={styles.centralized}>
-      <form>
+       <h2>Registro</h2>
+      
         <div >
           <label >E-mail</label>
           <input
@@ -49,14 +50,14 @@ function Register({ switchToLogin, closeModal }) {
           />
         </div>
 
-        <button onClick={handleRegister} className="button">
+        <button className={styles.confirm} onClick={handleRegister} >
           Cadastrar 
         </button>
-        <div className="footer">
-          <p>Você já tem uma conta?</p>
-          <button onClick={switchToLogin}>Acesse sua conta aqui</button>
-        </div>
-      </form>
+        
+          <p>Você já tem uma conta?
+          <button className={styles.hidden} onClick={switchToLogin}>Acesse sua conta aqui</button>
+
+        </p>
     </div>
     </div>
     </div>
