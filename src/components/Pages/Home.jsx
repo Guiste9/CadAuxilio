@@ -3,7 +3,7 @@ import coracao from '../assets/coracao.png';
 import { useState } from 'react';
 import Register from '../Login/Register';
 import Login from '../Login/Login';
-import LinkButton from '../Layout/LinkButton';
+import { Navigate } from 'react-router-dom';
 
 function Home() {
     const [activeModal, setActiveModal] = useState(null);
@@ -24,8 +24,10 @@ function Home() {
                         {activeModal === "register" ? (
                             <Register switchToLogin={() => setActiveModal("login")} closeModal={() => setActiveModal(null)} />
                         ) : (
-                            <Login switchToRegister={() => setActiveModal("register")} closeModal={() => setActiveModal(null)} />
-                        )}
+                            <Login switchToRegister={() => setActiveModal("register")} closeModal={() => setActiveModal(null)}
+                            switchToCadastroPage={() => Navigate("/cadastro")} />
+                            
+                        ) }
                     </div>
                 </div>
             )}

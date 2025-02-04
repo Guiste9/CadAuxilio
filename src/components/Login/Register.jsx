@@ -1,7 +1,7 @@
 import { useState } from "react"
 import {useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth'
 import styles from "../Layout/Modal.module.css";
-import { auth } from "../../services/FireBaseConfig"
+import { auth } from "../../services/FirebaseConfig"
 
 function Register({ switchToLogin, closeModal }) {
   const [email, setEmail] = useState("");
@@ -12,10 +12,13 @@ function Register({ switchToLogin, closeModal }) {
 
   async function handleRegister() {
         const response = await createUserWithEmailAndPassword(email, password);
-        if (response?.user) {
-            closeModal(); 
-        }
     }
+    
+    function bothClicks(){
+        handleRegister()
+        switchToLogin()
+    }
+
   return (
     <div className={styles.modalBackground}>
           <div className={styles.modalContainer}>
@@ -50,7 +53,7 @@ function Register({ switchToLogin, closeModal }) {
           />
         </div>
 
-        <button className={styles.confirm} onClick={handleRegister} >
+        <button className={styles.confirm} onClick={bothClicks}  >
           Cadastrar 
         </button>
         

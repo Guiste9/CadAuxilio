@@ -1,12 +1,14 @@
 import { useState } from "react";
 import React from "react";
-import { auth } from "../../services/FireBaseConfig";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../services/FirebaseConfig";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import styles from "../Layout/Modal.module.css";
 
-function Login({ switchToRegister, closeModal }) {
+function Login({ switchToRegister, closeModal,switchToCadastroPage }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate()
 
     const [signInWithEmailAndPassword, user, loading, error] =
         useSignInWithEmailAndPassword(auth);
@@ -14,9 +16,11 @@ function Login({ switchToRegister, closeModal }) {
     async function handleSignIn() {
         const response = await signInWithEmailAndPassword(email, password);
         if (response?.user) {
-            closeModal(); 
+            closeModal();
+             navigate("/cadastrador")
         }
     }
+    
 
     return (
       <div className={styles.modalBackground}>
@@ -40,7 +44,8 @@ function Login({ switchToRegister, closeModal }) {
             <div>
                 <label >Senha</label>
             <input type="password"
-              value={password} onChange={(e) => setPassword(e.target.value)} />
+              value={password}
+             onChange={(e) => setPassword(e.target.value)} />
             </div>
 
             <button className={styles.confirm} onClick={handleSignIn}>Entrar</button>
