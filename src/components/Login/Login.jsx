@@ -1,49 +1,63 @@
-import { FaUser, FaLock } from "react-icons/fa"
+import { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../services/FirebaseConfig";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import styles from "../Layout/Modal.module.css";
 
-import { useState } from "react"
+function Login({ switchToRegister, closeModal,switchToCadastroPage }) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate()
 
-import "./Login.css"
-const Login = () => {
+    const [signInWithEmailAndPassword, user, loading, error] =
+        useSignInWithEmailAndPassword(auth);
 
-  const [username, setUsername] = useState("")
-  const [password, setpassword] = useState("")
+    async function handleSignIn() {
+        const response = await signInWithEmailAndPassword(email, password);
+        if (response?.user) {
+            closeModal();
+             navigate("/cadastrador")
+        }
+    }
+    
 
-  const handlesubmit = (event) => {
-    event.preventDefault()
+    return (
+      <div className={styles.modalBackground}>
+      <div className={styles.modalContainer}>
+        <div className={styles.titleCloseBtn}>
+                              <button onClick={() => closeModal()}>×</button>
+                            </div>
+        <div className={styles.centralized}>
 
-    alert("enviando os dados:" + username + "-" + password)
-  }
-  return (
-    <div className="container">
-        <form onSubmit={handlesubmit}>
-            <h1>acesse o sistema</h1>
-            <div className=" input-field">
-                <input type="email"placeholder='E-mail'
-                required onChange={e => setUsername(e.target.value)} />
-                <FaUser className="icon"/>
+            <h2>Login</h2>
+
+            <div>
+            <label >E-mail</label>
+            <input 
+            type="text"  
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} 
+            />
             </div>
-            <div className="input-field">
-                <input type="password" placeholder='Senha' onChange={e => setpassword(e.target.value)}/>
-                <FaLock className="icon"/>
+
+            <div>
+                <label >Senha</label>
+            <input type="password"
+              value={password}
+             onChange={(e) => setPassword(e.target.value)} />
             </div>
 
-          <div className="recall-forget">
-            <label>
-              <input type="checkbox" />
-              lembre de mim
-            </label>
-            <a href="#">Esqueceu a senha?</a>
-          </div>
-            <button>Entrar</button>
+            <button className={styles.confirm} onClick={handleSignIn}>Entrar</button>
 
-          <div className="signup-link">
-            <p>
-              Não tem um conta? <a href="#">Registar</a>
-            </p>
-          </div>
-        </form>
-    </div>
-  )
+            {loading && <p>Carregando...</p>}
+            {error && <p style={{ color: "red" }}>Credenciais incorretas</p>}
+
+            <p>Não tem uma conta? <button className={styles.hidden} onClick={switchToRegister}>Registrar-se</button></p>
+        </div>
+        </div>
+        </div>
+    );
 }
 
-export default Login
+export default Login;

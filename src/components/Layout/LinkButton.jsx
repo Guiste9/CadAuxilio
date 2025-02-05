@@ -1,9 +1,8 @@
-import { Link } from 'react-router-dom'
 import styles from './LinkButton.module.css'
-
-function LinkButton({to,text}){
+import {Link} from 'react-router-dom'
+function LinkButton({to,text,onclick,className}){
     return(
-        <Link className = {styles.btn} to= {to}>
+        <Link to={to} className = {`${styles.btn} ${className}`} onClick={onclick}>
             {text}
         </Link>
     )

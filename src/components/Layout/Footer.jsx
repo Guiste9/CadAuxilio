@@ -2,8 +2,8 @@ import styles from './Footer.module.css'
 function Footer(){
 
     return (
-        <footer class ={styles.footer}>
-            <ul class ={styles.social_list}>
+        <footer className ={styles.footer}>
+            <ul className ={styles.social_list}>
                 <li>
                    Contato:
                     (85) 98900-6765
