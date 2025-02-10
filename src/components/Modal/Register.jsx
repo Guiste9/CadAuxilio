@@ -1,6 +1,6 @@
 import { useState } from "react"
 import {useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth'
-import styles from "../Layout/Modal.module.css";
+import styles from "./Modal.module.css";
 import { auth } from "../../services/FirebaseConfig"
 
 function Register({ switchToLogin, closeModal }) {

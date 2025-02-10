@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import Container from './Container'
 import styles from './Navbar.module.css'
-import logo from '../assets/pessoas.png'
+import logo from '../../public/pessoas.png'
 
 function Navbar(){
 
@@ -19,7 +19,7 @@ function Navbar(){
                 <Link to="/Cadastrador">Cadastrador</Link>
             </li>
             <li className={styles.item}>
-                <Link to="/Frequências">Frequências</Link>
+                <Link to="/frequencias">Frequências</Link>
             </li>
         </ul>
         </Container>

@@ -3,9 +3,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../services/FirebaseConfig";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import styles from "../Layout/Modal.module.css";
+import styles from "./Modal.module.css";
 
-function Login({ switchToRegister, closeModal,switchToCadastroPage }) {
+function Login({ switchToRegister, closeModal}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate()
@@ -27,7 +27,7 @@ function Login({ switchToRegister, closeModal,switchToCadastroPage }) {
       <div className={styles.modalContainer}>
         <div className={styles.titleCloseBtn}>
                               <button onClick={() => closeModal()}>×</button>
-                            </div>
+       </div>
         <div className={styles.centralized}>
 
             <h2>Login</h2>
