@@ -1,8 +1,8 @@
 import styles from './Home.module.css';
-import coracao from '../assets/coracao.png';
+import coracao from '../public/coracao.png'
 import { useState } from 'react';
-import Register from '../Login/Register';
-import Login from '../Login/Login';
+import Register from '../components/Modal/Register';
+import Login from '../components/Modal/Login';
 import { Navigate } from 'react-router-dom';
 
 function Home() {
