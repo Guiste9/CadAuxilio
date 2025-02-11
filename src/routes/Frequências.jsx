@@ -2,6 +2,7 @@ import { useEffect,useState } from "react"
 import { auth } from "../services/FirebaseConfig"
 import { onAuthStateChanged, signOut } from "firebase/auth"
 import api from "../services/api"
+import styles from "./Cadastrador.module.css"
 
 function handleLogout(){
     signOut(auth)
@@ -66,37 +67,37 @@ function Frequências() {
     }, [])
     
     return (
-        <div>
-        <h1>Frequências</h1>
+
+        <div> 
+                    <div className={styles.header}>
+                    <h1 >Frequências</h1>
+                    {user ? <p>Bem-vindo, {user.email}!</p> : <p>Você não está logado.</p>}
+                    </div>
             {user ? (<div>
-                    <p>Bem-vindo, {user.email}!</p>
-                    <button onClick={handleLogout}>Sair</button>
-                    <form >
-                        
-                    </form>
+                    <button onClick={handleLogout} className={styles.logout}>Sair</button>
 
                     <h2>Lista de Famílias</h2>
-
-                    <ul>
-    {families.map((family) => (
-        <li key={family.id || Math.random().toString(36).substr(2, 9)}> 
-            <p>{family.parents_name} - {family.address}</p>
-            <p>{family.children_name} ({family.children_age} anos)</p>
+                    <div className={styles.rectangule}>
+            {families.map((family) => (
+            <div className={styles.family_card} key={family.id || Math.random().toString(36).substr(2, 9)}> 
+            <p>Nome: {family.parents_name}</p>
+            <p>Endereço: {family.address}</p>
+            <p>Criança: {family.children_name} ({family.children_age} anos)</p>
             
             {/* Exibir quantidade de presenças */}
             <p>Presenças: {family.attendance ? family.attendance.length : 0}</p>
 
-            <ul>
+            <div>
                 {family.attendance && family.attendance.map((date,index) => (
-                    <li key={index}>{new Date(date).toLocaleDateString("pt-BR")}</li>
+                    <div key={index}>{new Date(date).toLocaleDateString("pt-BR")}</div>
                 ))}
-            </ul>
+            </div>
 
             {/* Botão para marcar presença */}
-            <button onClick={() => markAttendance(family.id)}>Marcar Presença</button>
-        </li>
+            <button className={styles.attendancebtn} onClick={() => markAttendance(family.id)}>Marcar Presença</button>
+        </div>
     ))}
-</ul>
+</div>
                         
                 </div>
             ) : (

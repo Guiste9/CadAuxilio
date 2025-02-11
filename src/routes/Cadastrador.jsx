@@ -52,30 +52,33 @@ function Cadastrador() {
     }, [])
 
     return (
-        <div>
+        <div> 
+            <div className={styles.header}>
             <h1 >Cadastrador</h1>
+            {user ? <p>Bem-vindo, {user.email}!</p> : <p>Você não está logado.</p>}
+            </div>
             {user ? (
                 <div>
-                    <p>Bem-vindo, {user.email}!</p>
-                    <button onClick={handleLogout}>Sair</button>
+                    <button onClick={handleLogout} className={styles.logout}>Sair</button>
 
                     <h2>Adicionar Família</h2>
-                    <button onClick={() => setActiveModal(true)}>Cadastrar família</button>
+                    <button className={styles.btn} onClick={() => setActiveModal(true)}>Cadastrar família</button>
 
                     {activeModal && <Cadastror closeModal={() => setActiveModal(false)} fetchFamilies={fetchFamilies} familyData={activeModal} />}
 
                     <h2>Lista de Famílias</h2>
                     <div className={styles.rectangule}>
-                    <ul>
                         {families.map((family) => (
-                            <li key={family.id}>
-                                <p>{family.parents_name} - {family.address}</p>
-                                <p>{family.children_name} ({family.children_age} anos)</p>
-                                <button onClick={() => deleteFamily(family.id)}>Deletar</button>
-                                <button onClick={() => setActiveModal(family)}>Editar</button>
-                            </li>
+                            <div key={family.id} className={styles.family_card}>
+                                <p>Nome: {family.parents_name} </p>
+                                <p>Endereço: {family.address}</p>
+                                <p>Contato: {family.number}</p>
+                                <p>Criança: {family.children_name} ({family.children_age} anos)</p>
+                                <button onClick={() => deleteFamily(family.id)} className={styles.delete}>Deletar</button>
+                                <button className={styles.edit} onClick={() => setActiveModal(family)}>Editar</button>
+                            </div>
                         ))}
-                    </ul>
+                    
                     </div>
                 </div>
             ) : (

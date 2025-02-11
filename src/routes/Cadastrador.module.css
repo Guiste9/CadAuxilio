@@ -1,13 +1,139 @@
 .rectangule{
     display: flex;
-    justify-content: center;
-    background-color:#FFF4ED;
-    border: 4px solid #FF7420;
-    color: #222;
-    height: 100px;
-    padding: 1em;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
 }
 
-.center {
-    padding-top: 10em;
+.header {
+    text-align: center;
+    padding-left: 500px;
+}
+
+.button-group{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+}
+
+.button-group button {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn {
+    background-color: #3cb371;
+    color: #fff;
+    border: 3px solid #222;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    width: 175px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.logout{
+    background-color: #ff4d4d;
+        color: #fff;
+        border: 3px solid #222;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        border-radius: 40px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: all 0.3s ease;
+        width: 175px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+}
+
+.logout:hover{
+    background-color: darkred
+}
+
+.family_card{
+    background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+}
+
+.attendancebtn{
+
+    background-color: #3cb371;
+    color: #fff;
+    border: 3px solid #222;
+    text-decoration: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    width: 150px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.attendancebtn:hover{
+    background-color:#296845;
+}
+
+
+.delete {
+    background-color: #ff4d4d;
+        color: #fff;
+        border: 3px solid #222;
+        text-decoration: none;
+        border-radius: 40px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: all 0.3s ease;
+        width: 100px;
+        height: 30px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+}
+
+.delete:hover {
+    background-color: darkred;
+}
+
+.edit{
+    background-color: #007bff;
+        color: #fff;
+        border: 3px solid #222;
+        text-decoration: none;
+        border-radius: 40px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: all 0.3s ease;
+        width: 100px;
+        height: 30px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+}
+
+.edit:hover {
+    background-color: #0056b3;
 }
