@@ -1,0 +1,13 @@
+.rectangule{
+    display: flex;
+    justify-content: center;
+    background-color:#FFF4ED;
+    border: 4px solid #FF7420;
+    color: #222;
+    height: 100px;
+    padding: 1em;
+}
+
+.center {
+    padding-top: 10em;
+}

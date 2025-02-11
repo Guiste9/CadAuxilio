@@ -3,6 +3,7 @@ import { auth } from "../services/FirebaseConfig"
 import { onAuthStateChanged, signOut } from "firebase/auth"
 import api from "../services/api"
 import Cadastror from "../components/Modal/Cadastror"
+import styles from "./Cadastrador.module.css"
 
 function handleLogout(){
     signOut(auth)
@@ -46,9 +47,13 @@ function Cadastrador() {
         }
     }
 
+    useEffect(() => {
+        fetchFamilies()
+    }, [])
+
     return (
         <div>
-            <h1>Cadastrador</h1>
+            <h1 >Cadastrador</h1>
             {user ? (
                 <div>
                     <p>Bem-vindo, {user.email}!</p>
@@ -57,18 +62,21 @@ function Cadastrador() {
                     <h2>Adicionar Família</h2>
                     <button onClick={() => setActiveModal(true)}>Cadastrar família</button>
 
-                    {activeModal && <Cadastror closeModal={() => setActiveModal(false)} fetchFamilies={fetchFamilies} />}
+                    {activeModal && <Cadastror closeModal={() => setActiveModal(false)} fetchFamilies={fetchFamilies} familyData={activeModal} />}
 
                     <h2>Lista de Famílias</h2>
+                    <div className={styles.rectangule}>
                     <ul>
                         {families.map((family) => (
                             <li key={family.id}>
                                 <p>{family.parents_name} - {family.address}</p>
                                 <p>{family.children_name} ({family.children_age} anos)</p>
                                 <button onClick={() => deleteFamily(family.id)}>Deletar</button>
+                                <button onClick={() => setActiveModal(family)}>Editar</button>
                             </li>
                         ))}
                     </ul>
+                    </div>
                 </div>
             ) : (
                 <p>Você não está logado.</p>

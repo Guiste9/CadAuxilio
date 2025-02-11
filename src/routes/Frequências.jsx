@@ -42,6 +42,7 @@ function Frequências() {
 
             if (data.success){
                 alert("frequencia marcada com sucesso")
+                fetchFamilies()
             } else {
                 alert("erro ao marcar frequencia"+ data.error)
             }
@@ -60,6 +61,9 @@ function Frequências() {
         return () => unsubscribe();
     }, [])
 
+    useEffect(() => {
+        fetchFamilies()
+    }, [])
     
     return (
         <div>
@@ -82,11 +86,14 @@ function Frequências() {
             {/* Exibir quantidade de presenças */}
             <p>Presenças: {family.attendance ? family.attendance.length : 0}</p>
 
+            <ul>
+                {family.attendance && family.attendance.map((date,index) => (
+                    <li key={index}>{new Date(date).toLocaleDateString("pt-BR")}</li>
+                ))}
+            </ul>
+
             {/* Botão para marcar presença */}
             <button onClick={() => markAttendance(family.id)}>Marcar Presença</button>
-
-            {/* Botão para deletar */}
-            <button onClick={() => deleteFamily(family.id)}>Deletar</button>
         </li>
     ))}
 </ul>
