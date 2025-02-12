@@ -69,7 +69,7 @@ function Cadastror({ closeModal, fetchFamilies, familyData }) {
                             value={childrenAge}
                             onChange={(e) => setChildrenAge(e.target.value )}
                         />
-                        <button type="submit"> {familyData && familyData.id ? "salvar alterações" : "Cadastrar"}</button>
+                        <button className={styles.confirm} type="submit"> {familyData && familyData.id ? "salvar alterações" : "Cadastrar"}</button>
                     </div>
                 </form>
             </div>
